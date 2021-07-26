@@ -1,0 +1,27 @@
+---
+  - name: nxos commands
+    hosts: switches
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: running show ip int breif command
+        nxos_command:
+          # authorize: yes
+          # host: sbx-nxos-mgmt.cisco.com
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          # port: 443
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+          # auth_pass: "{{ANSIBLE_NET_PASSWORD}}"
+          commands: sh ip int brief 
+        register: output
+
+      - name: output the data
+        debug: msg="{{inventory_hostname}}"
+      
+      - name: copy output to a file
+        copy:
+          content: "{{output.stdout}}"
+          dest: "output-{{inventory_hostname}}.json"
