@@ -1,0 +1,37 @@
+---
+  - name: create Loopback interface for nexus 9k device
+    hosts: switches
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: creating the Loopback interface shell
+        nxos_interface:
+          name: Loopback25
+          mode: layer3
+          description: created by Y
+          admin_state: up
+          # authorize: yes
+          # host: sbx-nxos-mgmt.cisco.com
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          port: 443
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+          # auth_pass: Admin_1234!
+          
+
+      - name: set the configuration for the Loopback 
+        nxos_l3_interface:
+          state: present
+          name: Loopback25
+          ipv4: 10.99.98.3/24
+          # authorize: yes
+          # host: sbx-nxos-mgmt.cisco.com
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          port: 443
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+          # auth_pass: Admin_1234!
