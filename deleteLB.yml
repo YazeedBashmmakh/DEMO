@@ -1,0 +1,19 @@
+---
+  - name: delete Loopback 
+    hosts: switches
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: deleting loopback 25
+        nxos_interface:
+          name: Loopback25
+          state: absent
+          # authorize: yes
+          # host: sbx-nxos-mgmt.cisco.com
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          port: 443
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+          # auth_pass: Admin_1234!

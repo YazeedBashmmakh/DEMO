@@ -1,0 +1,17 @@
+---
+  - name: creating backup files Nexus 9k switch playbook
+    hosts: switches
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: save output in backup folder
+        nxos_config:
+          backup: yes
+          backup_options:
+            dir_path: ./backup
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+        

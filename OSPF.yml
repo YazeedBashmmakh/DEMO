@@ -1,0 +1,40 @@
+---
+  - name: Configuring OSPF for interfaces
+    hosts: switches
+    connection: local
+    gather_facts: false
+    tasks:
+      - name: creating the Ethernet1/30 interface shell
+        nxos_interface:
+          name: Ethernet1/30
+          mode: layer3
+          description: created by Y
+          admin_state: up
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+
+      - name: set ip address for interface Ethernet1/30
+        nxos_l3_interface:
+          name: Ethernet1/30
+          ipv4: 172.16.102.11/24
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
+
+      - name: enabling OSPF in Ethernet1/30 interface
+        nxos_config:
+          lines:
+            # - ip ospf
+            - ip router ospf 1 area 0.0.0.0
+            # - ip ospf priority 1
+          parents: interface Ethernet1/30
+          password: "{{ANSIBLE_NET_PASSWORD}}"
+          username: "{{ANSIBLE_NET_USERNAME}}"
+          transport: nxapi
+          use_ssl: yes
+          validate_certs: no 
