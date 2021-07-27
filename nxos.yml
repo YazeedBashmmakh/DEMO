@@ -20,12 +20,12 @@
 
       - name: output the data
         debug: msg="{{inventory_hostname}}"
-      - name: create path
-        file: 
-          path: /home/$USER/Documents/output 
-          state: directory 
-          mode: 0755
+#       - name: create path
+#         file: 
+#           path: /home/$USER/Documents/output 
+#           state: directory 
+#           mode: 0755
       - name: copy output to a file
         copy:
           content: "{{output.stdout}}"
-          dest: /home/$USER/Documents/output/"output-{{inventory_hostname}}.json"
+          dest: "/home/$USER/Documents/output-{{inventory_hostname}}.json"
