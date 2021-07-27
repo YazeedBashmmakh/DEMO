@@ -1,6 +1,6 @@
 ---
   - name: nxos commands
-    hosts: sbx-nxos-mgmt.cisco.com
+    hosts: Devnet sandbox switch
     connection: local
     gather_facts: false
     tasks:
