@@ -28,4 +28,4 @@
       - name: copy output to a file
         copy:
           content: "{{output.stdout}}"
-          dest: /Documents/output/"output-{{inventory_hostname}}.json"
+          dest: /home/$USER/Documents/output/"output-{{inventory_hostname}}.json"
