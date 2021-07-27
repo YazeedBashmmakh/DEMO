@@ -22,7 +22,7 @@
         debug: msg="{{inventory_hostname}}"
       - name: create path
         file: 
-          path: /Documents/output 
+          path: /home/$USER/Documents/output 
           state: directory 
           mode: 0755
       - name: copy output to a file
