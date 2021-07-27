@@ -1,6 +1,6 @@
 ---
   - name: nxos commands
-    hosts: Devnet sandbox switch
+    hosts: switches
     connection: local
     gather_facts: false
     tasks:
