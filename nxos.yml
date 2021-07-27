@@ -1,6 +1,6 @@
 ---
   - name: nxos commands
-    hosts: switches
+    hosts: sbx-nxos-mgmt.cisco.com
     connection: local
     gather_facts: false
     tasks:
